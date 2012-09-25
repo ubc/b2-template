@@ -17,8 +17,8 @@ Requirements:
 
 How to Use:
     
-    git clone this repo
+    git clone https://github.com/ubc/b2-template.git
     cd PROJECT_NAME
     ant init
 
-This will help you to setup the initial develop environment, including directory structures and download the necessary jar files.
+This will help you to setup the initial develop environment, including directory structures and download the necessary jar files. You may want to remove this .git directory and create your own git repo once your set up your project.
