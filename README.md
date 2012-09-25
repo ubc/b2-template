@@ -1,6 +1,14 @@
 Building Block Template for Blackboard Learn
+============================================
 
 This template helps developers to set up the building block development environment.
+
+Provides:
+* Spring
+* Log4J
+* JUnit
+* Jetty (for testing)
+* And more
 
 Requirements:
 * JDK
