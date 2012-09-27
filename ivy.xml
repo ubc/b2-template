@@ -27,6 +27,7 @@
         <dependency org="org.codehaus.jackson" name="jackson-core-asl" rev="1.9.9"/>
         <dependency org="org.codehaus.jackson" name="jackson-mapper-asl" rev="1.9.9"/>
 
+        <dependency org="commons-logging" name="commons-logging" rev="1.1.1"/>
         <dependency org="log4j" name="log4j" rev="1.2.17" transitive="false"/>
         <dependency org="org.slf4j" name="slf4j-api" rev="1.6.6" conf="test"/>
         <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.6.6" conf="test"/>
