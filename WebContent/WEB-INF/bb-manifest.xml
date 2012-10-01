@@ -49,6 +49,8 @@
 
 <!-- code permissions required for proper operation -->
         <permissions>
+            <!-- Spring need this to work -->
+            <permission type="java.lang.reflect.ReflectPermission" name="suppressAccessChecks" />
             <!-- sample permissions -->
 <!--
             <permission type="attribute" name="user.authinfo" actions="get"/>

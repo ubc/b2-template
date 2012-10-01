@@ -11,17 +11,25 @@
         <fileset dir="${web}/WEB-INF/lib">
             <include name="*.jar"/>
         </fileset>
-        <fileset dir="lib/">
-            <include name="**/*.jar"/>
-        </fileset>
         <fileset dir="${bb.sdk}">
             <include name="**/*.jar"/>
         </fileset>
         <pathelement path="${build}"/>
     </path>
 
+    <path id="classpath.build">
+        <pathelement location="${build.test}"/>
+        <fileset dir="lib/build">
+            <include name="**/*.jar"/>
+        </fileset>
+        <path refid="classpath.master" />
+    </path>
+
     <path id="classpath.test">
         <pathelement location="${build.test}"/>
+        <fileset dir="lib/test">
+            <include name="**/*.jar"/>
+        </fileset>
         <path refid="classpath.master" />
     </path>
 
@@ -98,7 +106,7 @@
         <javac destdir="${build}" source="1.5" target="1.5" debug="true"
                deprecation="false" optimize="false" failonerror="true" includeantruntime="false">
             <src path="${src}"/>
-            <classpath refid="classpath.master"/>
+            <classpath refid="classpath.build"/>
         </javac>
         <copy todir="${build}">
             <fileset dir="${src}" excludes="**/*.java" />

@@ -2,13 +2,14 @@
 <ivy-module version="2.0">
     <info organisation="ca.ubc.ctlt" module="PROJECT_NAME"/>
 
-    <configurations defaultconfmapping="runtime->master;test->master">
+    <configurations defaultconfmapping="build->master;runtime->master;test->master">
+   		<conf name="build" />
    		<conf name="runtime" />
    		<conf name="test" extends="runtime" />
 	</configurations>
 
     <dependencies>
-        <dependency org="javax.servlet" name="servlet-api" rev="2.4" transitive="false"/>
+        <dependency org="javax.servlet" name="servlet-api" rev="2.4" conf="build" transitive="false"/>
         <dependency org="junit" name="junit" rev="4.10" transitive="false" conf="test"/>
         <dependency org="org.mockito" name="mockito-all" rev="1.9.5-rc1" conf="test"/>
         <!--    <dependency org="pmd" name="pmd" rev="4.3"/>-->
