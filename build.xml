@@ -29,6 +29,7 @@
         <mkdir dir="${src}"/>
         <mkdir dir="${web}"/>
         <echo>The project ${b2.package.name} has been created successfully!</echo>
+        <echo>NOTE: if you are going to use version control, please remove .git directory: rm -rf .git</echo>
     </target>
 
     <target name="setup-project" description="Set up project">
