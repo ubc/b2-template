@@ -75,6 +75,7 @@
         <tstamp/>
         <!-- Create the build directory structure used by compile -->
         <mkdir dir="${build}"/>
+        <mkdir dir="${web}/WEB-INF/lib"/>
         <!-- Check to see if we need to grab B2Context -->
         <condition property="needB2Context">
             <and>
