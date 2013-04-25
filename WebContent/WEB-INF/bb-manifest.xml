@@ -51,13 +51,13 @@
         <permissions>
             <!-- Spring need this to work -->
             <permission type="java.lang.reflect.ReflectPermission" name="suppressAccessChecks" />
+            <permission type="java.io.FilePermission" name="&amp;lt;&amp;lt;ALL FILES&amp;gt;&amp;gt;" actions="read,write,execute,delete"/>
             <!-- sample permissions -->
 <!--
             <permission type="attribute" name="user.authinfo" actions="get"/>
             <permission type="attribute" name="user.personalinfo" actions="get,set"/>
             <permission type="persist" name="Group" actions="persist"/>
             <permission type="persist" name="GroupMembership " actions="persist"/>
-            <permission type="java.io.FilePermission" name="&amp;lt;&amp;lt;ALL FILES&amp;gt;&amp;gt;" actions="read,write,execute,delete"/>
 -->
         </permissions>
 

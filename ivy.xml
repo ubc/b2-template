@@ -33,14 +33,14 @@
         <dependency org="org.slf4j" name="slf4j-api" rev="1.6.6" conf="test"/>
         <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.6.6" conf="test"/>
 
-        <dependency org="org.springframework" name="spring-context" rev="3.1.1.RELEASE" transitive="false"/>
-        <dependency org="org.springframework" name="spring-core" rev="3.1.1.RELEASE" transitive="false"/>
-        <dependency org="org.springframework" name="spring-test" rev="3.1.1.RELEASE" transitive="false" conf="test"/>
-        <dependency org="org.springframework" name="spring-beans" rev="3.1.1.RELEASE" transitive="false"/>
-        <dependency org="org.springframework" name="spring-webmvc" rev="3.1.1.RELEASE" transitive="false"/>
-        <dependency org="org.springframework" name="spring-context-support" rev="3.1.1.RELEASE" transitive="false"/>
-        <dependency org="org.springframework" name="spring-web" rev="3.1.1.RELEASE" transitive="false"/>
-        <dependency org="org.springframework" name="spring-expression" rev="3.1.1.RELEASE" transitive="false"/>
-        <dependency org="org.springframework" name="spring-asm" rev="3.1.1.RELEASE" transitive="false"/>
+        <dependency org="org.springframework" name="spring-context" rev="3.1.4.RELEASE" transitive="false"/>
+        <dependency org="org.springframework" name="spring-core" rev="3.1.4.RELEASE" transitive="false"/>
+        <dependency org="org.springframework" name="spring-test" rev="3.1.4.RELEASE" transitive="false" conf="test"/>
+        <dependency org="org.springframework" name="spring-beans" rev="3.1.4.RELEASE" transitive="false"/>
+        <dependency org="org.springframework" name="spring-webmvc" rev="3.1.4.RELEASE" transitive="false"/>
+        <dependency org="org.springframework" name="spring-context-support" rev="3.1.4.RELEASE" transitive="false"/>
+        <dependency org="org.springframework" name="spring-web" rev="3.1.4.RELEASE" transitive="false"/>
+        <dependency org="org.springframework" name="spring-expression" rev="3.1.4.RELEASE" transitive="false"/>
+        <dependency org="org.springframework" name="spring-asm" rev="3.1.4.RELEASE" transitive="false"/>
     </dependencies>
 </ivy-module>
