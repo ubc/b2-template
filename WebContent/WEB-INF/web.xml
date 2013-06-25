@@ -3,6 +3,11 @@
     <display-name>B2_NAME</display-name>
 
     <context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value>ca.ubc.ctlt.B2_NAME</param-value>
+    </context-param>
+
+    <context-param>
         <param-name>spring.profiles.active</param-name>
         <param-value>prod</param-value>
     </context-param>
