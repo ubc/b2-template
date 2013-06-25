@@ -3,9 +3,6 @@
 <project xmlns:ivy="antlib:org.apache.ivy.ant" name="PROJECT_NAME" basedir="." default="dist">
     <property file="build.properties"/>
     <property file="local.properties"/>
-    <property name="b2context.url" value="http://projects.oscelot.org/gf/download/frsrelease/669/4384/"/>
-    <property name="b2context.zip_basename" value="B2Context-1.2.00"/>
-    <property name="b2context.jar" value="b2context-1.2.00.jar"/>
 
     <path id="classpath.master">
         <fileset dir="${web}/WEB-INF/lib">
@@ -33,7 +30,7 @@
         <path refid="classpath.master" />
     </path>
 
-    <target name="init" description="Initialize a B2 project" depends="setup-project, pre, findB2Context, resolve">
+    <target name="init" description="Initialize a B2 project" depends="setup-project, pre, resolve">
         <mkdir dir="${src}"/>
         <mkdir dir="${web}"/>
         <echo>The project ${b2.package.name} has been created successfully!</echo>
@@ -48,26 +45,15 @@
         <input message="B2 SDK Path(required):" addproperty="bb.sdk"/>
         <input message="BB Dev Server IP (for auto deployment, optional):" addproperty="bb.server" defaultvalue="192.168.56.101"/>
         <input message="Contact(for compatibility check, optional):" addproperty="contact"/>
-        <input message="Do you need B2Context?(true/false)" addproperty="use.b2context" defaultvalue="false"/>
         <propertyfile file="local.properties">
               <entry  key="b2.package.name" value="${b2.package.name}"/>
               <entry  key="bb.sdk" value="${bb.sdk}"/>
               <entry  key="bb.server" value="${bb.server}"/>
               <entry  key="contact" value="${contact}"/>
-              <entry  key="use.b2context" value="${use.b2context}"/>
         </propertyfile>
         <replaceregexp file="${web}/WEB-INF/web.xml" match="&lt;display-name>.*&lt;\/display-name\>" replace="&lt;display-name>${b2.package.name}&lt;/display-name>" byline="true"/>
         <replaceregexp file="ivy.xml" match="module=&quot;.*&quot;" replace="module=&quot;${b2.package.name}&quot;" byline="true"/>
         <replaceregexp file="${web}/WEB-INF/bb-manifest.xml" match="B2_NAME" replace="${b2.package.name}" byline="true"/>
-    </target>
-
-    <target name="findB2Context" if="needB2Context">
-        <mkdir dir="${ivy.lib.runtime.dir}"/>
-        <mkdir dir="${temp.dir}"/>
-        <get src="${b2context.url}/${b2context.zip_basename}.zip" dest="${temp.dir}"/>
-        <unzip src="${temp.dir}/${b2context.zip_basename}.zip" dest="${temp.dir}"/>
-        <move file="${temp.dir}/${b2context.zip_basename}/${b2context.jar}" todir="${ivy.lib.runtime.dir}"/>
-        <delete dir="${temp.dir}"/>
     </target>
 
     <target name="pre">
@@ -76,15 +62,6 @@
         <!-- Create the build directory structure used by compile -->
         <mkdir dir="${build}"/>
         <mkdir dir="${web}/WEB-INF/lib"/>
-        <!-- Check to see if we need to grab B2Context -->
-        <condition property="needB2Context">
-            <and>
-                <not>
-                    <available file="${ivy.lib.runtime.dir}/${b2context.jar}" property="b2context.present"/>
-                </not>
-                <isset property="use.b2context"/>
-            </and>
-        </condition>
     </target>
 
     <target name="install-ivy" description="Install the ivy task jar">
@@ -93,7 +70,7 @@
     </target>
 
     <target name="resolve" description="Retrieve dependencies with ivy">
-        <ivy:retrieve pattern="${ivy.lib.dir}/[conf]/[artifact]-[type]-[revision].[ext]"/>
+        <ivy:retrieve pattern="${ivy.lib.dir}/[conf]/[artifact]-[type]-[revision].[ext]" type="jar,bundle" sync="true"/>
     </target>
 
     <target name="ivy-report" depends="pre" description="Generate ivy dependency report">
@@ -102,7 +79,7 @@
         <ivy:report todir="${reports.ivy}" />
     </target>
 
-    <target name="build" description="Compile main source tree java files" depends="pre, findB2Context, resolve">
+    <target name="build" description="Compile main source tree java files" depends="pre, resolve">
         <fail message="Please set bb.sdk property in local.properties to your Blackboard SDK directory" unless="bb.sdk"/>
         <javac destdir="${build}" source="1.5" target="1.5" debug="true"
                deprecation="false" optimize="false" failonerror="true" includeantruntime="false">
