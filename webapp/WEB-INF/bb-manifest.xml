@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- core extension information -->
+    <plugin>
+        <name value= "UBC CTLT building Block Template"/>
+        <handle value= "b2-template"/>
+        <description value= "For the Library tab course reserves listing"/>
+        <version value= "1.0.0"/>
+        <requires>
+            <bbversion value="9.1"/>
+        </requires>
+        <vendor>
+            <id value="ubc"/>
+            <name value="University of British Columbia"/>
+            <url value="http://www.ubc.ca" />
+            <description value="" />
+        </vendor>
+        
+<!--    These two JSPs are displayed when the "remove" and "properties" buttons --> 
+<!--	are pressed on the Building Blocks administration page. 				-->
+<!--    <http-actions>
+            <config value="admin/configure.jsp"/>
+            <remove value="admin/remove.jsp"/>
+        </http-actions>
+ -->    
+        <application-defs>
+            <application handle="b2-template" type="shared" use-ssl="false" 
+            	name="UBC CTLT Building Block Template" can-allow-guest="false">
+                <description lang="en_US"></description>
+                <links>
+                    
+                <link><type value="system_tool"></type><name value="B2 Template Configuration"></name></link></links>
+            </application>
+        </application-defs>
+
+<!-- Portal Module Definitions -->
+        <module-defs>
+        </module-defs>
+<!--  Custom Content Types -->
+        <content-handlers>
+        </content-handlers>
+
+<!-- code permissions required for proper operation -->
+        <permissions>
+            <permission type="attribute" name="user.authinfo" actions="get"/>
+            <permission type="attribute" name="user.personalinfo" actions="get,set"/>
+            <!-- Required by Jersey -->
+            <permission type="java.lang.reflect.ReflectPermission" name="suppressAccessChecks" />
+        </permissions>
+
+    </plugin>
+
+</manifest>

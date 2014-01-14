@@ -1,6 +1,24 @@
+# Java
 *.class
 
-# Package Files #
-*.jar
+# Library dependencies taken care of by gradle (ideally anyways)
+WebContent/WEB-INF/lib/
+
+# Package Files
 *.war
 *.ear
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Gradle
+.gradle/
+build/
+
+# sass cache
+.sass-cache/
+
+# vim
+*.swp

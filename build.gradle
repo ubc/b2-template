@@ -1,0 +1,50 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+	maven {
+		url "https://maven.blackboard.com/content/repositories/releases"
+	}
+}
+
+ext {
+	bblVer = "9.1.120113.0" // we're on sp13, but BB maven stuck on sp12
+	bblServer = "bblvm" // the BBL server to deploy to
+}
+
+configurations {
+	b2deploy // need path to b2deploy jar path, so assign it a config artifact
+}
+
+dependencies {
+	// providedCompile are dependencies that don't need to go into the war file
+	// regular compile is for dependencies that needs to go into the war file
+
+	// blackboard provided libraries
+	providedCompile "blackboard.platform:bb-platform:$bblVer"
+	providedCompile "blackboard.platform:bb-taglibs:$bblVer" // bbNG tags
+	providedCompile "blackboard.platform:bb-bbxythos:$bblVer" // content system
+	b2deploy "org.oscelot:b2deploy-task:0.1.0" // automatic b2 install
+
+	// java servlet api, we're stuck with 2.5 cause BBL uses tomcat 6
+    providedCompile 'javax.servlet:servlet-api:2.5' 
+
+	// Logback, logging framework, with native slf4j api
+	compile 'ch.qos.logback:logback-classic:1.0.13'
+	// Jersey, rest framework, jax-rs reference implementation
+	compile 'org.glassfish.jersey.containers:jersey-container-servlet-core:2.4'
+}
+
+war
+{
+	// didn't want src/main/webapp structure so have to include it here
+	from "webapp"
+}
+
+// automatically install the building block on the dev server
+task deploy( dependsOn: "war" ) << {
+	ant.taskdef( name: "b2deploy", classname: "org.oscelot.ant.B2DeployTask", classpath: project.configurations.b2deploy.asPath )
+	ant.b2deploy(localfilepath: project.war.archivePath, host: bblServer, courseorgavailable: 'true', clean: 'true')
+}
