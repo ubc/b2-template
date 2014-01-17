@@ -1,53 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <!-- core extension information -->
-    <plugin>
-        <name value= "UBC CTLT building Block Template"/>
-        <handle value= "b2-template"/>
-        <description value= "For the Library tab course reserves listing"/>
-        <version value= "1.0.0"/>
-        <requires>
-            <bbversion value="9.1"/>
-        </requires>
-        <vendor>
-            <id value="ubc"/>
-            <name value="University of British Columbia"/>
-            <url value="http://www.ubc.ca" />
-            <description value="" />
-        </vendor>
-        
-<!--    These two JSPs are displayed when the "remove" and "properties" buttons --> 
-<!--	are pressed on the Building Blocks administration page. 				-->
-<!--    <http-actions>
-            <config value="admin/configure.jsp"/>
-            <remove value="admin/remove.jsp"/>
-        </http-actions>
- -->    
-        <application-defs>
-            <application handle="b2-template" type="shared" use-ssl="false" 
-            	name="UBC CTLT Building Block Template" can-allow-guest="false">
-                <description lang="en_US"></description>
-                <links>
-                    
-                <link><type value="system_tool"></type><name value="B2 Template Configuration"></name></link></links>
-            </application>
-        </application-defs>
+	<!-- core extension information -->
+	<plugin>
+		<!-- This'll be the name displayed in the Building Blocks list -->
+		<name value="Building Block Template" /> <!-- CHANGEME -->
+		<!-- If this changes, then it's treated as a new building block. I think 
+			it's combined with vendor ID to form the building block's ID. -->
+		<handle value="b2-template" /> <!-- CHANGEME -->
+		<description
+			value="A template with example code for building other building blocks." />
+		<version value="1.0.0" />
+		<requires>
+			<!-- Same Format as BBL versions: major.minor.patch.build, only first 
+				two numbers required. -->
+			<bbversion value="9.1" />
+		</requires>
+		<vendor>
+			<id value="ubc" />
+			<name value="University of British Columbia" />
+			<url value="http://www.ubc.ca" />
+			<description value="" />
+		</vendor>
 
-<!-- Portal Module Definitions -->
-        <module-defs>
-        </module-defs>
-<!--  Custom Content Types -->
-        <content-handlers>
-        </content-handlers>
+		<!-- Each building block has a set of dropdown menu items in System Admin 
+			> Building Blocks > Installed Tools. This section configures where those 
+			links go. -->
+		<http-actions>
+			<!-- Configures where the "Settings" link goes. -->
+			<config value="admin/index.jsp" />
+			<!-- Configures a pre-removal page for performing special uninstall actions. -->
+			<!-- <remove value="admin/remove.jsp"/> -->
+		</http-actions>
 
-<!-- code permissions required for proper operation -->
-        <permissions>
-            <permission type="attribute" name="user.authinfo" actions="get"/>
-            <permission type="attribute" name="user.personalinfo" actions="get,set"/>
-            <!-- Required by Jersey -->
-            <permission type="java.lang.reflect.ReflectPermission" name="suppressAccessChecks" />
-        </permissions>
+		<!-- Defines how other parts of BBL can create links to this building block.
+		Note that while you can define multiple applications, there doesn't seem to be
+		any need, as with type='shared', you can define both course and system links
+		in the same <application> block. -->
+		<application-defs>
+			<application handle="b2-template" type="shared" use-ssl="false"
+				name="Building Block Template" can-allow-guest="false">
+				<description lang="en_US"></description>
+				<links>
+					<!-- Configure a link to this building block for System Admin > Tools and
+					Utilities. In this case, the link goes to the same configuration page as
+					Settings configured in <http-actions>. -->
+					<link>
+						<type value="system_tool"></type>
+						<name value="B2 Template Configuration"></name>
+						<url value="admin/index.jsp" />
+					</link>
+					<!-- Allow instructors to create links to this building block in their courses. -->
+					<!--
+					<link>
+						<type value="course_tool"></type>
+						<name value="B2 Template course tool"></name>
+						<url value="index.html" />
+					</link>
+					-->
+				</links>
+			</application>
+		</application-defs>
 
-    </plugin>
+		<!-- Portal Module Definitions -->
+		<module-defs>
+		</module-defs>
+		<!-- Custom Content Types -->
+		<content-handlers>
+		</content-handlers>
+
+		<!-- Code permissions required for proper operation -->
+		<permissions>
+			<permission type="attribute" name="user.authinfo" actions="get" />
+			<permission type="attribute" name="user.personalinfo"
+				actions="get,set" />
+			<!-- Required by Jersey -->
+			<permission type="java.lang.reflect.ReflectPermission"
+				name="suppressAccessChecks" />
+		</permissions>
+
+	</plugin>
 
 </manifest>

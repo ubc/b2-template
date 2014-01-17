@@ -1,0 +1,23 @@
+{
+  "name": "b2-template",
+  "version": "1.0.0",
+  "homepage": "https://github.com/ubc/b2-template",
+  "authors": [
+    "John Hsu <john.hsu@ubc.ca>"
+  ],
+  "description": "REST-style Building Block Template",
+  "main": "css/main.css",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.9",
+    "angular-resource": "~1.2.9"
+  }
+}
