@@ -1,25 +1,26 @@
-Blackboard Building Block template for a REST style building block. Tested on a Blackboard Learn 9.1 SP13 instance.
+# Building Block Template
+A seed project for bootstrapping a REST style building block. Tested on a Blackboard Learn 9.1 SP13 instance.
 
 Server side provided by the [Jersey framework](https://jersey.java.net/). Client side using [AngularJS](http://angularjs.org/) with CSS compiled by [Sass](http://sass-lang.com/). Java logging using the [Logback](http://logback.qos.ch/) implementation of the [SLF4J](http://www.slf4j.org/) API. 
 
-Overall project dependency management provided by [Gradle](http://www.gradle.org/). Augmented by [Bower](http://bower.io/) for client side dependency management. Gradle should automatically call Bower in the initial setup.
+Overall project dependency management provided by [Gradle](http://www.gradle.org/). Using [Bower](http://bower.io/) for client side dependency management. Gradle should automatically call both Bower and Sass as necessary.
 
-# Dependencies
+## Dependencies
 
-Software that needs to be installed by the user before using this template.
+Software that needs to be installed by the user before using this template, listed with their own dependencies mainly for version mismatch troubleshooting.
 
-* Gradle 1.10
+* [Gradle](http://www.gradle.org/) 1.10
  * [Apache Ant](http://ant.apache.org/) 1.9.2
-* Bower
+* [Bower](http://bower.io/) 1.2.8
  * [NodeJS](http://nodejs.org/) 0.10.15
  * [npm](https://npmjs.org/) 1.2.18
-* Sass
+* [Sass](http://sass-lang.com/) 3.2.12
  * [Ruby](https://www.ruby-lang.org/en/) 1.9.3
  * [RubyGems](http://rubygems.org/) 1.8.23
 
-Version number might not be hard requirements, just the version that was used at the time.
+Version numbers are not be hard requirements, just the version that was used at the time.
 
-# Configuration
+## Configuration
 
 In `build.gradle`, edit `bblServer` to the address of the Blackboard Learn server you want to deploy the building blocks to.
 
@@ -27,11 +28,11 @@ In `build.gradle`, edit `bblServer` to the address of the Blackboard Learn serve
 
 There are comments with `CHANGEME` spread throughout the example. Those indicate locations where you can configure unique values for your building block. Most `CHANGEME` comments are on the same line as the value to be changed but if the value is too long, then the comment is placed before the line.
 
-## Optional
+### Optional
 
 Java logging using Logback has a configuration file at `webapp/WEB-INF/classes/logback.xml`
 
-# Usage
+## Usage
 
 To build the building block:
 
@@ -52,12 +53,22 @@ If you messed up the Eclipse project and need to recreate it from scratch:
     gradle cleanEclipse
     gradle eclipse
 
-# Directory Layout
+## Directory Layout
 
-- `webapp/styles`, where Sass files live and where the compiled CSS will be too.
-- `webapp/scripts`, meant for javascript files.
+- `build.gradle`, Gradle configuration
+- `bower.json`, Bower configuration
+- `src/`, Java source files
+- `webapp/`, where front-end stuff and configuration files live.
+  - `admin/`, where the building block admin JSP files are
+  - `styles/`, where Sass files live and where the compiled CSS will be too.
+  - `scripts/`, meant for javascript files.
+  - `WEB-INF/`, configuration files
+    - `bb-manifest.xml`, building block configuration
+    - `web.xml`, servlet configuration, configured with Jersey's auto resource scanning.
+    - `classes/`
+      - `logback.xml`, Java logging configuration
 
-# Gradle Notes
+## Gradle Notes
 
 * Blackboard Libraries - Currently pulling from the Blackboard's Maven repository, which unfortunately hasn't been updated since SP12.
 * The webapp/ directory is in the project root for faster access. Note that the default location for webapp is src/main/webapp/. There is an extra directive for including the webapp/ in the project root.
