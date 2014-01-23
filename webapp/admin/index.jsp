@@ -3,6 +3,17 @@
 <!-- Include the Blackboard Tag Library -->
 <%@ taglib prefix="bbNG" uri="/bbNG"%>
 
+<!-- 
+Building block pages should be enclosed in one of the Blackboard provided page
+tags. In this example, we used bbNG:genericPage, which lets the page to rendered
+with nothing wrapping around it. Other page tags are available such as
+bbNG:learningSystemPage (will render the page with course menus, etc) and
+bbNG:includedPage (for pages that needs to be jsp-included to another page).
+
+The ctxId params provides access  to a Blackboard Context object where
+information about the current request being served can be retrieved. In this
+example, we gave it a short 'ctx' name, but the default name is 'bbContext'.
+-->
 <bbNG:genericPage ctxId="ctx" >
 
 <bbNG:pageHeader instructions="Customize this page by editing webapp/admin/index.jsp"> <!-- CHANGEME -->

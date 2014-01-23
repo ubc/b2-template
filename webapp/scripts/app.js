@@ -27,9 +27,10 @@ adminModule.controller('AdminCtrl',
 			// Change the status message to let the user know that stuff is happening.
 			// Users might not see this if we get the results back fast enough.
 			$scope.submitMsg = "processing";
-			// Note that we're using the same AdminRsc as previously but using the promise mechanism
-			// instead of callbacks to process the result. We've also supplied a username param which
-			// means we do a request to /api/admin/username
+			// Note that we're using the same AdminRsc as previously but using the more
+			// advanced promise mechanism instead of callbacks to process the result.
+			// We've also supplied a username param which means we do a request to
+			// /api/admin/username
 			AdminRsc.get({username:this.username}).$promise.then(
 				// if the request was successful
 				function(result)

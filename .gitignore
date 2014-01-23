@@ -17,6 +17,9 @@ WebContent/WEB-INF/lib/
 .gradle/
 build/
 
+# Bower
+webapp/bower_components/
+
 # sass cache
 .sass-cache/
 

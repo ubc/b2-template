@@ -31,17 +31,27 @@ import blackboard.platform.context.ContextManagerFactory;
 public class AdminApp extends Application
 {
 	private final static Logger logger = LoggerFactory.getLogger(AdminApp.class);
-	// basic user data retrieval, id, username, name, email, student id
-	// basic data submission, take username
 	
+	/**
+	 * Retrieves user information on the currently logged in user.
+	 * 
+	 * @return JSON formatted user information.
+	 */
 	@GET
 	public String getDefaultUserInfo()
 	{
+		// The Blackboard Context object is how you access information about the request that we're serving.
+		// This is the same Context accessible with the bbNG page tags.
 		Context ctx = ContextManagerFactory.getInstance().getContext();
-		User user = ctx.getUser();
+		User user = ctx.getUser(); // this is the logged in user who initiated this request
 		return getUserInfoByUsername(user.getUserName());
 	}
 	
+	/**
+	 * Given a username, retrieve the user id, name, email, and student id of that user.
+	 * @param username - the username to search to for
+	 * @return JSON formatted string containing the user's id, username, name, email and student id.
+	 */
 	@GET
 	@Path("{username}")
 	public String getUserInfoByUsername(@PathParam("username") String username)
@@ -49,16 +59,18 @@ public class AdminApp extends Application
 		User user;
 		try
 		{
+			// loading objects using the Building Block API often requires a *DbLoader object, 
+			// getting an instance of the correct *DbLoader object follows this pattern
 			UserDbLoader userloader;
 			userloader = UserDbLoader.Default.getInstance();
 			user = userloader.loadByUserName(username);
 		} catch (KeyNotFoundException e)
 		{
-			throw new NotFoundException("User not found.");
+			throw new NotFoundException("User not found."); // returns a http 404 error
 		} catch (PersistenceException e)
 		{
 			logger.debug("Unable to load user loader.", e);
-			throw new InternalServerErrorException("Unable to load user.");
+			throw new InternalServerErrorException("Unable to load user."); // returns a http 500 error
 		}
 		
 		HashMap<String,String> userInfo = new HashMap<String,String>();
@@ -68,6 +80,9 @@ public class AdminApp extends Application
 		userInfo.put("email", user.getEmailAddress());
 		userInfo.put("studentid", user.getStudentId());
 		
+		// Gson is a Google library for converting Java objects into JSON strings and
+		// vice versa. I use Gson cause it's simple, but Jersey has actual integration
+		// with other JSON libraries if needed.
 		Gson gson = new Gson();
 		
 		return gson.toJson(userInfo);

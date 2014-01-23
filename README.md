@@ -7,7 +7,7 @@ Overall project dependency management provided by [Gradle](http://www.gradle.org
 
 ## Dependencies
 
-Software that needs to be installed by the user before using this template, listed with their own dependencies mainly for version mismatch troubleshooting.
+These tools (listed with their individual dependencies) needs to be installed by the user before using this template. The version numbers are provided for troubleshooting purposes, but they're not hard requirements, just the version that was used at the time.
 
 * [Gradle](http://www.gradle.org/) 1.10
  * [Apache Ant](http://ant.apache.org/) 1.9.2
@@ -18,7 +18,6 @@ Software that needs to be installed by the user before using this template, list
  * [Ruby](https://www.ruby-lang.org/en/) 1.9.3
  * [RubyGems](http://rubygems.org/) 1.8.23
 
-Version numbers are not be hard requirements, just the version that was used at the time.
 
 ## Configuration
 
@@ -73,3 +72,11 @@ If you messed up the Eclipse project and need to recreate it from scratch:
 * Blackboard Libraries - Currently pulling from the Blackboard's Maven repository, which unfortunately hasn't been updated since SP12.
 * The webapp/ directory is in the project root for faster access. Note that the default location for webapp is src/main/webapp/. There is an extra directive for including the webapp/ in the project root.
 * The building block deployment is done by creating an Ant task and then executing it. The Ant task is how the old deployment script worked. I'm not sure if the Ant task is necessary or if some built in Gradle capability can be used instead.
+
+## Todo
+
+Other possible things to demo:
+- Creating custom tables using the schema.xml feature.
+- Loading AngularJS in a module.
+- An actual course tool page in the demo. 
+- Save/Load building block configurations either using the database or text files.

@@ -22,8 +22,8 @@
 			<description value="" />
 		</vendor>
 
-		<!-- Each building block has a set of dropdown menu items in System Admin 
-			> Building Blocks > Installed Tools. This section configures where those 
+		<!-- Each building block has a set of dropdown menu items in System Admin > 
+			Building Blocks > Installed Tools. This section configures where those 
 			links go. -->
 		<http-actions>
 			<!-- Configures where the "Settings" link goes. -->
@@ -47,14 +47,16 @@
 					<link>
 						<type value="system_tool"></type>
 						<name value="B2 Template Configuration"></name>
-						<url value="admin/index.jsp" />
+						<!-- The URL is relative to the building block and is where the user will
+						be taken when clicking on this link. -->
+						<url value="admin/index.jsp" /> <!-- This is the jsp at webapp/admin/indjex.jsp -->
 					</link>
 					<!-- Allow instructors to create links to this building block in their courses. -->
 					<!--
 					<link>
 						<type value="course_tool"></type>
 						<name value="B2 Template course tool"></name>
-						<url value="index.html" />
+						<url value="course/index.jsp" />
 					</link>
 					-->
 				</links>
@@ -63,9 +65,44 @@
 
 		<!-- Portal Module Definitions -->
 		<module-defs>
+			<!-- 
+			Example of a module that people can add, e.g.: to their home pages or to custom system tabs.
+			Note that due to a javascript loader system in effect for modules, if you intend to use 
+			AngularJS, you will need to manually bootstrap Angular (ng-app won't work, so you tell 
+			Angular to bootstrap on the element that ng-app is on).
+			
+			The <edit> and <admin> sections in <jsp> are optional. Both jsp should use <bbNG:modulePage>
+			tags.
+			<edit> is for individually user customizable properties
+			<admin> is for system admin accessible only global properties
+			 -->
+			<!-- 
+			<module-type ext-ref="ubc-b2-template" title="B2 Template" uicreatable="true">
+				<jsp-dir>module</jsp-dir>
+				<jsp>
+					<view>index.jsp</view>
+					<edit>edit.jsp</edit>
+					<admin>admin.jsp</admin>
+				</jsp>
+			</module-type>
+			<module type="ubc-b2-template" isadmin="true" useraddable="true"
+				isdeletable="true" title="B2 Template">
+				<description>B2 Template</description>
+				<module-groups>
+					<module-group id="Everyone" />
+				</module-groups>
+				<ExtraInfo>
+					<property key="body.text" type="String">
+					Building Block Template Demo Module
+					</property>
+				</ExtraInfo>
+			</module>
+			-->
 		</module-defs>
+
 		<!-- Custom Content Types -->
 		<content-handlers>
+			<!-- Never used these before, no idea what they do. -->
 		</content-handlers>
 
 		<!-- Code permissions required for proper operation -->
