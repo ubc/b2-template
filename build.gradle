@@ -41,6 +41,11 @@ dependencies {
 	compile 'com.google.code.gson:gson:2.2.4'
 }
 
+// Gradle wrapper support
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
 // Compile the Sass css file into regular css 
 task compileCSS(type:Exec) {
 	println 'Compiling css'	
